@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+body {
+  margin: 0;
+  font-family: 'Comfortaa', cursive;
+  background: #b3e5fc;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,150,0.4) 2px, transparent 8px),
+              radial-gradient(circle at 80% 40%, rgba(255,255,150,0.3) 2px, transparent 6px),
+              radial-gradient(circle at 50% 80%, rgba(255,255,150,0.2) 3px, transparent 9px);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: shimmer 10s linear infinite;
+  z-index: 0;
+}
+@keyframes shimmer {
+  0% {background-position: 0 0, 0 0, 0 0;}
+  100% {background-position: 200px 200px, 200px 200px, 200px 200px;}
+}
+.title {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 3rem;
+  color: #317873;
+  text-shadow: 0 0 10px #fff9b0;
+}
+.grid {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+.semestre {
+  background: #d7f0e9;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 6px 12px rgba(49, 120, 115, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+.semestre:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 150, 0.6);
+}
+.semestre h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #2d625e;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-shadow: 0 0 6px #fff9b0;
+}
+.materia-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.materia {
+  background: #b5e5d8;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #16443f;
+  box-shadow: 0 3px 5px rgba(49, 120, 115, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.materia.aprobada {
+  background: #fff9b0;
+  color: #7a6600;
+  box-shadow: 0 0 12px 3px #fff9b0;
+  font-weight: 700;
+  position: relative;
+  animation: pulseGlow 1s ease forwards;
+}
+.materia.aprobada::after {
+  content: '✓';
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: #7a6600;
+  margin-left: 8px;
+  user-select: none;
+}
+.materia.bloqueada {
+  background: #a7a7a7;
+  color: #666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 #fff9b0; }
+  50% { box-shadow: 0 0 10px 4px #fff9b0; }
+  100% { box-shadow: 0 0 0 0 #fff9b0; }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
